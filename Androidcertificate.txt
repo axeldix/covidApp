@@ -1,0 +1,16 @@
+-alias androiddebugkey -storepass android -keypass android
+Alias name: androiddebugkey
+Creation date: Sep 1, 2019
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: C=US, O=Android, CN=Android Debug
+Issuer: C=US, O=Android, CN=Android Debug
+Serial number: 1
+Valid from: Sun Sep 01 22:12:47 ART 2019 until: Tue Aug 24 22:12:47 ART 2049
+Certificate fingerprints:
+         MD5:  93:67:C5:91:3A:AE:B7:4B:DD:44:4A:B2:50:50:7F:D2
+         SHA1: 19:2A:66:62:72:5E:78:35:A4:BE:F6:9A:87:95:7C:02:77:0A:1D:63
+         SHA256: FC:43:F0:57:62:AD:85:00:5B:D7:A5:5B:E2:D3:7F:54:EF:6A:C8:2B:E6:8C:8E:46:3F:9F:AB:4B:C8:6B:12:70
+         Signature algorithm name: SHA1withRSA
+         Version: 1
