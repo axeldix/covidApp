@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:853005137807:android:18b959eb0b10c536dd3dfa",
+        "mobilesdk_app_id": "1:853005137807:android:f1f7e85c064d48e7dd3dfa",
         "android_client_info": {
           "package_name": "com.covidappjs"
         }
       },
       "oauth_client": [
         {
-          "client_id": "853005137807-ojnjdj3b7eqgvcgvibj4lgqimrfd0eie.apps.googleusercontent.com",
+          "client_id": "853005137807-b1he7304auu3nga9ogttd20ohlbvoh3o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.covidappjs",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "853005137807-mrhjuenj2lgp9jac17pcd9t3d5kibq68.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.covidappjs",
@@ -37,6 +45,13 @@
             {
               "client_id": "853005137807-rc1d26o973k84gtuu33j8cafug9l9240.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "853005137807-i75udpjofshl8sicclddvoj3a13331p2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.covidAppJs"
+              }
             }
           ]
         }

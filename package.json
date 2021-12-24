@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "npx react-native run-android",
+    "android": " cd /Users/axeldiaz/workspace/covidAppJs/ && npx react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "cleanAndroid": "cd android && ./gradlew clean && cd ..",
+    "cleanAndroid": "cd /Users/axeldiaz/workspace/covidAppJs/android/ && ./gradlew clean && cd ..",
+    "cleanCache": "rm -rf /tmp/metro-* &&  watchman watch-del-all",
     "test": "jest",
     "lint": "eslint ."
   },

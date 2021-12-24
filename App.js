@@ -38,10 +38,10 @@ const App: () => Node = () => {
   useEffect(() => {
     const optionsGoogleSignIn = {
       webClientId:
-        '853005137807-ojnjdj3b7eqgvcgvibj4lgqimrfd0eie.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+        '853005137807-rc1d26o973k84gtuu33j8cafug9l9240.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
       offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
       forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-      accountName: '', // [Android] specifies an account name on the device that should be used
+      //accountName: '', // [Android] specifies an account name on the device that should be used
     };
     GoogleSignin.configure(optionsGoogleSignIn);
   }, []);
@@ -57,7 +57,7 @@ const App: () => Node = () => {
       console.log('res', res)
 
       const userInformation = await GoogleSignin.signIn();
-      setUserInfo(userInformation);
+      // setUserInfo(userInformation);
       console.log('userInformation', userInformation);
       // setUserInfo(userInformation);
     } catch (error) {
@@ -95,7 +95,8 @@ const App: () => Node = () => {
           <Text>{userInfo}</Text>
           {loaded && (
             <View>
-              <Text>{userInfo?.user?.name}</Text>
+              <Text>"ell"</Text>
+              {/* <Text>{userInfo?.user?.name}</Text> */}
             </View>
           )}
           <View>
