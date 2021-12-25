@@ -7,41 +7,50 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
+  Image,
 } from 'react-native';
 
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {
   GoogleSignin,
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-community/google-signin';
+import {WEB_CLIENT_ID} from './googleSettings';
+import styled from 'styled-components';
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [userInfo, setUserInfo] = useState('empty');
+  const [userInfo, setUserInfo] = useState();
   const [loaded, setLoaded] = useState('false');
-  const [state, setState] = useState({isLoginScreenPresented: false});
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  const PROFILE_IMAGE_SIZE = 150;
+
+  const prettyJson = (value: any) => {
+    return JSON.stringify(value, null, 2);
   };
 
   useEffect(() => {
     const optionsGoogleSignIn = {
-      webClientId:
-        '853005137807-rc1d26o973k84gtuu33j8cafug9l9240.apps.googleusercontent.com', // client ID of type WEB for your server (needed to verify user ID and offline access)
+      webClientId: WEB_CLIENT_ID, // client ID of type WEB for your server (needed to verify user ID and offline access)
       offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
       forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
       //accountName: '', // [Android] specifies an account name on the device that should be used
+      profileImageSize: PROFILE_IMAGE_SIZE,
     };
     GoogleSignin.configure(optionsGoogleSignIn);
   }, []);
@@ -53,13 +62,15 @@ const App: () => Node = () => {
 
   const signIn = async () => {
     try {
-      const res = await GoogleSignin.hasPlayServices();
-      console.log('res', res)
-
-      const userInformation = await GoogleSignin.signIn();
-      // setUserInfo(userInformation);
-      console.log('userInformation', userInformation);
-      // setUserInfo(userInformation);
+      const hasPlayServices = await GoogleSignin.hasPlayServices();
+      if (hasPlayServices) {
+        const userInformation = await GoogleSignin.signIn();
+        if (userInformation?.idToken) {
+          setUserInfo(userInformation);
+          setLoaded(true);
+          console.log(userInformation);
+        }
+      }
     } catch (error) {
       console.log('ERROR', error);
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -77,54 +88,46 @@ const App: () => Node = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <GoogleSigninButton
-            style={{width: 192, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-            // disabled={isSigninInProgress}
-          />
-          <Text>{userInfo}</Text>
-          {loaded && (
-            <View>
-              <Text>"ell"</Text>
-              {/* <Text>{userInfo?.user?.name}</Text> */}
-            </View>
-          )}
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Title>Welcome to CovidApp</Title>
+        <GoogleSigninButton
+          style={{width: 192, height: 48, margin: 50}}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={signIn}
+          // disabled={isSigninInProgress}
+        />
+        {loaded && (
           <View>
-            <Text>{`is logged? ${state?.isLoginScreenPresented}`}</Text>
+            <View>
+              <Text>{userInfo?.user?.name}</Text>
+            </View>
+            <Text>Your user info: {prettyJson(userInfo?.user)}</Text>
+            {userInfo?.user?.photo && (
+              <Image
+                style={{width: PROFILE_IMAGE_SIZE, height: PROFILE_IMAGE_SIZE}}
+                source={{uri: userInfo?.user?.photo}}
+              />
+            )}
           </View>
-        </View>
-      </ScrollView>
+        )}
+      </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+const Title = styled.Text`
+  font-size: 50px;
+  text-align: center;
+  color: palevioletred;
+  margin: 30px;
+`;
 
 export default App;
