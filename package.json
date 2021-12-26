@@ -7,15 +7,24 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "cleanAndroid": "cd /Users/axeldiaz/workspace/covidAppJs/android/ && ./gradlew clean && cd ..",
+    "cleanNode": "cd /Users/axeldiaz/workspace/covidAppJs/ && rm -rfv node_modules/ && rm package-lock.json",
     "cleanCache": "rm -rf /tmp/metro-* &&  watchman watch-del-all",
+    "cleanAndBuild": "npm run cleanCache && npm run cleanNode && npm i && npm run cleanAndroid && npm run android",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
     "@react-native-community/google-signin": "^5.0.0",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.9.8",
+    "@react-navigation/stack": "^5.14.9",
     "react": "17.0.2",
     "react-native": "0.66.4",
+    "react-native-axios": "^0.17.1",
+    "react-native-gesture-handler": "^2.1.0",
+    "react-native-reanimated": "2.2.4",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.1",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
