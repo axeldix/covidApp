@@ -6,7 +6,7 @@
     "android": " cd /Users/axeldiaz/workspace/covidAppJs/ && npx react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "cleanAndroid": "cd /Users/axeldiaz/workspace/covidAppJs/android/ && ./gradlew clean && cd ..",
+    "cleanAndroid": "cd /Users/axeldiaz/workspace/covidAppJs/android/ && ./gradlew clean build --refresh-dependencies && cd ..",
     "cleanNode": "cd /Users/axeldiaz/workspace/covidAppJs/ && rm -rfv node_modules/ && rm package-lock.json",
     "cleanCache": "rm -rf /tmp/metro-* &&  watchman watch-del-all",
     "cleanAndBuild": "npm run cleanCache && npm run cleanNode && npm i && npm run cleanAndroid && npm run android",
