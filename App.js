@@ -6,19 +6,16 @@ import LogIn from './src/screens/logIn';
 import {createStackNavigator} from '@react-navigation/stack';
 import {View, Text, ScrollView, FlatList} from 'react-native';
 import axios from 'react-native-axios';
-import { TestResult } from '@jest/types';
+import {TestResult} from '@jest/types';
 // import {list, shortList} from './list';
 
 const Stack = createStackNavigator();
 
 const ConfirmedCases = () => {
-  return (<Text>"ConfirmedCases Screen"</Text>);
+  return <Text>"ConfirmedCases Screen"</Text>;
 };
 
 const CountryList = () => {
-  //  const prettyJson = (value: any) => {
-  //    return JSON.stringify(value, null, 2);
-  //  };
   const [list, setList] = useState(false);
 
   const getList = () => {

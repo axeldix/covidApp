@@ -5812,6 +5812,11 @@
   dependencies:
     "follow-redirects" "0.0.7"
 
+"react-native-clean-project@^3.6.7":
+  "integrity" "sha512-GSJG1oNRJKtINPMzfHgRmu7HJs7phwgtwQ6GvyGARiySqQlU/bAc5zsI9rOeNPGlpgYongQtjOGdmqSpsWMJTw=="
+  "resolved" "https://registry.npmjs.org/react-native-clean-project/-/react-native-clean-project-3.6.7.tgz"
+  "version" "3.6.7"
+
 "react-native-codegen@^0.0.7":
   "integrity" "sha512-dwNgR8zJ3ALr480QnAmpTiqvFo+rDtq6V5oCggKhYFlRjzOmVSFn3YD41u8ltvKS5G2nQ8gCs2vReFFnRGLYng=="
   "resolved" "https://registry.npmjs.org/react-native-codegen/-/react-native-codegen-0.0.7.tgz"
