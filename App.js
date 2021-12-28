@@ -4,17 +4,28 @@ import {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import LogIn from './src/screens/logIn';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, Button, TouchableOpacity} from 'react-native';
 // import {list, shortList} from './list';
 import styled from 'styled-components';
+// import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 
-const ConfirmedCases = () => {
-  return <Text>"ConfirmedCases Screen"</Text>;
+const ConfirmedCases = ({route}) => {
+  const {country} = route.params;
+  console.log(country)
+  return (
+    <View>
+      {country ? (
+        <Text>`ConfirmedCases Screen {country.Country}`</Text>
+      ) : (
+        <Text>`ConfirmedCases Screen`</Text>
+      )}
+    </View>
+  );
 };
 
-const CountryList = () => {
+const CountryList = ({navigation}) => {
   const [list, setList] = useState(false);
 
   const getList = useCallback(() => {
@@ -23,7 +34,6 @@ const CountryList = () => {
         return res.json();
       })
       .then(json => {
-        console.log('json', json);
         setList(json);
         return json;
       })
@@ -36,14 +46,18 @@ const CountryList = () => {
     getList();
   }, [getList]);
 
+  const pressed = country => {
+    console.log('pressed', country);
+    return navigation.navigate('ConfirmedCases', {country});
+  };
+
   return (
     <View>
-      {console.log('------list------', list)}
       <FlatList
         data={list}
         renderItem={({item}) => (
           <Row>
-            <Title>{item.Country}</Title>
+            <Title onPress={() => pressed(item)}>{item.Country}</Title>
           </Row>
         )}
       />
