@@ -1,13 +1,12 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React, {useCallback} from 'react';
 import {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import LogIn from './src/screens/logIn';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, Text, ScrollView, FlatList} from 'react-native';
-import axios from 'react-native-axios';
-import {TestResult} from '@jest/types';
+import {View, Text, FlatList} from 'react-native';
 // import {list, shortList} from './list';
+import styled from 'styled-components';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +17,7 @@ const ConfirmedCases = () => {
 const CountryList = () => {
   const [list, setList] = useState(false);
 
-  const getList = () => {
+  const getList = useCallback(() => {
     return fetch('https://api.covid19api.com/countries')
       .then(res => {
         return res.json();
@@ -31,11 +30,11 @@ const CountryList = () => {
       .catch(err => {
         console.log('getList', err);
       });
-  };
+  }, []);
 
   useEffect(() => {
     getList();
-  }, []);
+  }, [getList]);
 
   return (
     <View>
@@ -43,20 +42,11 @@ const CountryList = () => {
       <FlatList
         data={list}
         renderItem={({item}) => (
-          <View>
-            <Text>{item.Country}</Text>
-          </View>
+          <Row>
+            <Title>{item.Country}</Title>
+          </Row>
         )}
       />
-      {/* <ScrollView>
-        {list
-          ? list.map((item, index) => (
-              <View key={index}>
-                <Text>{item.Country}</Text>
-              </View>
-            ))
-          : (<View>asdasdad</View>)}
-      </ScrollView> */}
     </View>
   );
 };
@@ -72,5 +62,20 @@ const App = () => {
     </NavigationContainer>
   );
 };
+
+const Row = styled.View`
+  text-align: left;
+  color: white;
+  background-color: white;
+  padding: 2px;
+  margin: 1px;
+  padding-left: 18px;
+  height: 60px;
+  justify-content: center;
+`;
+
+const Title = styled.Text`
+  font-size: 26px;
+`;
 
 export default App;
