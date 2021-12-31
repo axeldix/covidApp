@@ -25,8 +25,8 @@ const ConfirmedCases = ({route}) => {
     getData();
   }, [url]);
 
-  const sort = () => {
-    const list = [...data].sort(cases => cases <= 0);
+  const sort = field => {
+    const list = [...data].sort(field => field <= 0);
     setData([...list]);
   };
 
@@ -35,7 +35,8 @@ const ConfirmedCases = ({route}) => {
       {country ? (
         <View>
           <Text>{`ConfirmedCases Screen {country.Country}`}</Text>
-          <Title onPress={() => sort()}>{'Sort'}</Title>
+          <Title onPress={() => sort('Cases')}>{'Sort Cases'}</Title>
+          <Title onPress={() => sort('Date')}>{'Sort Date'}</Title>
           <FlatList
             data={data}
             renderItem={({item}) => (
