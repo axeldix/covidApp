@@ -1,23 +1,51 @@
-import 'react-native-gesture-handler';
+// import 'react-native-gesture-handler';
 import React, {useCallback} from 'react';
 import {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import LogIn from './src/screens/logIn';
 import {createStackNavigator} from '@react-navigation/stack';
-import {View, Text, FlatList, Button, TouchableOpacity} from 'react-native';
-// import {list, shortList} from './list';
+import {View, Text, FlatList} from 'react-native';
 import styled from 'styled-components';
-// import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 
 const ConfirmedCases = ({route}) => {
+  const [data, setData] = useState([]);
   const {country} = route.params;
-  console.log(country)
+
+  const url = `https://api.covid19api.com/total/dayone/country/${country.Slug}/status/confirmed`;
+
+  useEffect(() => {
+    const getData = () => {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => setData(data))
+        .catch(err => console.log(err));
+    };
+    getData();
+  }, [url]);
+
+  const sort = () => {
+    const list = [...data].sort(cases => cases <= 0);
+    setData([...list]);
+  };
+
   return (
     <View>
       {country ? (
-        <Text>`ConfirmedCases Screen {country.Country}`</Text>
+        <View>
+          <Text>{`ConfirmedCases Screen {country.Country}`}</Text>
+          <Title onPress={() => sort()}>{'Sort'}</Title>
+          <FlatList
+            data={data}
+            renderItem={({item}) => (
+              <Row>
+                <Text>{`Date: ${item.Date}`}</Text>
+                <Text>{`Cases: ${item.Cases}`}</Text>
+              </Row>
+            )}
+          />
+        </View>
       ) : (
         <Text>`ConfirmedCases Screen`</Text>
       )}
