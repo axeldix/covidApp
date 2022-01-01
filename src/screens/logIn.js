@@ -23,7 +23,7 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
-import {WEB_CLIENT_ID} from './../../googleSettings';
+import {WEB_CLIENT_ID} from '../../googleSettings';
 import styled from 'styled-components';
 
 const LogIn = () => {
