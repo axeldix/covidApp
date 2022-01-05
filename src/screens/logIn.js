@@ -54,11 +54,6 @@ const LogIn = () => {
     GoogleSignin.configure(optionsGoogleSignIn);
   }, []);
 
-  const isSignedIn = async () => {
-    const isSignedIn = await GoogleSignin.isSignedIn();
-    setState({isLoginScreenPresented: !isSignedIn}, ...state);
-  };
-
   const signIn = async () => {
     try {
       const hasPlayServices = await GoogleSignin.hasPlayServices();

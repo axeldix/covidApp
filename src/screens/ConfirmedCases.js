@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Title, FlatList} from 'react-native';
-import {Row} from './styles';
+import {View, Text, FlatList} from 'react-native';
+import {Row, Title} from './styles';
 
 const ConfirmedCases = ({route}) => {
   const [data, setData] = useState([]);
   const {country} = route.params;
+  console.log(country, data)
 
   const url = `https://api.covid19api.com/total/dayone/country/${country.Slug}/status/confirmed`;
 

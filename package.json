@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": " cd /Users/axeldiaz/workspace/covidAppJs/ && npx react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
+    "android": " cd /Users/axel/workspace/covidApp/ && npx react-native run-android",
+    "ios": "cd /Users/axel/workspace/covidApp/ && react-native run-ios",
+    "start": "npx react-native start",
     "cleanAndroid": "cd /Users/axeldiaz/workspace/covidAppJs/android/ && ./gradlew clean build --refresh-dependencies && cd ..",
     "cleanNode": "cd /Users/axeldiaz/workspace/covidAppJs/ && rm -rfv node_modules/ && rm package-lock.json",
     "cleanCache": "rm -rf /tmp/metro-* &&  watchman watch-del-all",
