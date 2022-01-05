@@ -103,7 +103,7 @@ const LogIn = () => {
             <View>
               <Text>{userInfo?.user?.name}</Text>
             </View>
-            <Text>Your user info: {prettyJson(userInfo?.user)}</Text>
+            <Text>Your user info: {loaded && prettyJson(userInfo?.user)}</Text>
             {userInfo?.user?.photo && (
               <Image
                 style={{width: PROFILE_IMAGE_SIZE, height: PROFILE_IMAGE_SIZE}}

@@ -5,7 +5,6 @@ import {Row, Title} from './styles';
 const ConfirmedCases = ({route}) => {
   const [data, setData] = useState([]);
   const {country} = route.params;
-  console.log(country, data)
 
   const url = `https://api.covid19api.com/total/dayone/country/${country.Slug}/status/confirmed`;
 
